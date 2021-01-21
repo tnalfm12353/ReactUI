@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SignUpForm from './SignUpForm.jsx';
-import axios from 'axios';
-import {SignUpApi} from '../lib/api/account/AccountApi';
-import {headers, axiosError} from '../lib/api/AxiosConfig';
+
 class SignUp extends React.Component{
     
     constructor(props){
@@ -41,44 +39,7 @@ class SignUp extends React.Component{
     handleChange(e){
         this.setState({[e.target.name]:e.target.value},this.validation(e))
     }
-    /* -------------------- Vaildation DB function ------------------------------*/
-    isExist(name,value){
-        let data = JSON.stringify({isExist:value});
-        const mappingValue = '/sign-up/valid-'+name;
-        
-        axios
-            .post(mappingValue, data, {
-               headers
-            })
-            .then(function (response) {
-                if(name === "username"){
-                    this.setState({isIdExist: response.data},this.idErrorMSG(response.data));
-                }else if(name === "nickname"){
-                    this.setState({isNickExist: response.data},this.nicknameErrorMSG(response.data));
-                }
-            }.bind(this))
-            .catch(function (error) {
-                axiosError(error);
-            });
-    }
-    /* -------------------- Error Message ------------------------------*/
-    nicknameErrorMSG(data){
-        if(!data){
-            this.setState({nickErrorMSG:"중복된 닉네임 입니다"});
-        }else{
-            this.setState({nickErrorMSG:''});
-        }
-
-    }
-
-    idErrorMSG(data){
-        if(!data){
-            this.setState({idErrorMSG:"중복된 아이디 입니다"});
-        }else{
-            this.setState({idErrorMSG:''});
-        }
-    }
-
+    
     /* -------------------- Validation ------------------------------*/
     validation(e) {
         const IDcheck = /^(?=.*[a-zA-Z]).{4,12}$/;
@@ -123,18 +84,7 @@ class SignUp extends React.Component{
         const {isIdExist,validPW,validCPW,isNickExist} = this.state;
         const {isSimpleSignUp} = this.props;
         if(isIdExist&&validPW&&validCPW&&isNickExist){
-            const requestMapping ="/sign-up/";
-            let mappingValue,data;
-            const {username,password,nickname} = this.state;
-            //Todo: 아마 this.props.isSimpleSignUp받아서 true면 id,pw,nickname만 data에 담아주고 아니라면 전부다 담기.
-            if(isSimpleSignUp){
-                data = JSON.stringify({username:username, password:password, nickname:nickname});
-                mappingValue = requestMapping + "simple-sign-up"; 
-            }else{
-                //datail
-            }
-            console.log("handsignup");
-            SignUpApi(mappingValue,data);
+            
         }else{
             const signUpBtn = document.getElementById("sign-up-btn");
             // signUpBtn.style.color="#e64980";

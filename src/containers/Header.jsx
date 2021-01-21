@@ -1,12 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
-import {device}from '../lib/style/Device';
-import Logo from '../../webapp/img/bufs.jpg';
+import {device}from '../style/Device';
+import Logo from '../img/temp.png';
 
 import Navi from '../components/Navi.jsx';
 import AccountButtons from '../account/AccountButtons.jsx';
+import AccountHeaderProfile from '../account/AccountHeaderProfile.jsx';
 const Header = () =>{
     return(
         <HeaderContainer>

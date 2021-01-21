@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import UserSettings from '../../components/UserSettings.jsx';
 
 const Home = () =>{
     return(
-        <h1>
-            Home
-        </h1>
+        <UserSettingsContainer>
+            <UserSettings/>
+        </UserSettingsContainer>
     );
 }
 
 export default Home;
+
+const UserSettingsContainer = styled.div`
+    width:100%;
+    
+`

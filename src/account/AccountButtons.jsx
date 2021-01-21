@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import {useState,useEffect} from 'react';
 import styled from 'styled-components';
-import {device}from '../lib/style/Device';
+import {device}from '../style/Device';
 import AuthenticTemp from './SimpleAuthenticTemp.jsx';
 
 const AccountButtons = () =>{
@@ -9,23 +9,24 @@ const AccountButtons = () =>{
     const [loginComponent, setLoginComponent] =useState(false);
     const [signUpComponent, setSignUpComponent] =useState(false);
 
-    const handleLogIn = (e) =>{
-        setLoginHandler(true),
-        setLoginComponent(true),
-        setSignUpComponent(false)
-    }
+        function handleLogIn(){
+            setLoginHandler(true);
+            setLoginComponent(true);
+            setSignUpComponent(false);
+        }
+    
+        function handleSignUp (){
+            setLoginHandler(true);
+            setSignUpComponent(true);
+            setLoginComponent(false);
+        }
+    
+        function handleClose () {
+            setLoginHandler(false);
+            setLoginComponent(false);
+            setSignUpComponent(false);
+        }
 
-    const handleSignUp = (e) =>{
-        setLoginHandler(true),
-        setLoginComponent(false),
-        setSignUpComponent(true)
-    }
-
-    const handleClose = () =>{
-        setLoginHandler(false);
-        setLoginComponent(false);
-        setSignUpComponent(false);
-    }
     return(
         <BtnContainer>
             <AuthenticBtn active={loginComponent} onClick={handleLogIn}>LogIn</AuthenticBtn>

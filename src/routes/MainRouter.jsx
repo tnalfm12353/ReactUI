@@ -1,20 +1,9 @@
-import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import {Home, About, NotFound, Community, Schedule, Login, SignUp} from './pages';
 import Header from '../containers/Header.jsx';
-import {getAccountFetch} from '../redux/modules/Account';
-import { useDispatch } from 'react-redux';
 
 const MainRouter = () =>{
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-        if(localStorage.getItem('jwt') != null){
-            dispatch(getAccountFetch());
-        }
-    })
-
     return(
         <Router>
             <Header/>

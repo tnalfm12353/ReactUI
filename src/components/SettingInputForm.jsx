@@ -1,31 +1,22 @@
+import React from 'react';
 import styled from 'styled-components';
 
-const LoginForm = ({onChange,LogIn,onKeyPress}) =>{
+const SettingInputForm = ({name,labelValue,onChange,onKeyPress}) =>{
+
     return(
-        <LoginDiv>
-            <GroupDiv onClick={(e)=>e.stopPropagation()}>
-                <Input name="username" onChange={onChange} onKeyPress={onKeyPress} required="required"/>
-                <Label>ID</Label>
-            </GroupDiv>
-            <GroupDiv onClick={(e)=>e.stopPropagation()}>
-                <Input type='password' name="password" onChange={onChange} onKeyPress={onKeyPress} required="required"/>
-                <Label>Password</Label>
-            </GroupDiv>
-            <LoginBtn onClick={()=>{LogIn()}}>Log In</LoginBtn>
-        </LoginDiv>
+        <GroupDiv>
+            <Input name={name} onChange={onChange} onKeyPress={onKeyPress} required="required"/>
+            <Label>{labelValue}</Label>
+        </GroupDiv>
     );
 }
 
-export default LoginForm;
+export default SettingInputForm;
 
-const LoginDiv = styled.div`
-    display:flex;
-    flex-direction:column;
-    flex:auto;
-`
 const GroupDiv = styled.div`
     position:relative;
-    margin-bottom:2rem;
+    flex-basis:1;
+    margin-bottom:1rem;
 `
 const Input = styled.input`
     font-size:1.5rem;
@@ -40,6 +31,7 @@ const Input = styled.input`
         outline:none;
         border-bottom:1px solid #ffca08;
     }
+    
     @media only screen and (max-height: 630px){
         font-size:1rem;
         margin:auto;
@@ -59,7 +51,7 @@ const Label = styled.label`
     -webkit-transition:0.5s all; 
 
     ${Input}:focus ~ & , ${Input}:valid ~ &{
-        top:0px;
+        top:-10px;
         left:20px;
         font-size:1rem;
         opacity: 0.7;
@@ -78,26 +70,6 @@ const Label = styled.label`
             opacity: 0.7;
             color:#ffca08;
         }
-    }
-`
-
-const LoginBtn = styled.div`
-    font-size :2rem;
-    font-weight:bold;
-    font-family: 'Kalam', cursive;
-    text-align: center;
-    color:gray;
-    width:80%;
-    margin:0 auto;
-    margin-bottom:2rem;  
-    padding:2px;  
-    box-shadow: 0px 5px 6px 3px rgba(0,0,0,0.16);
-
-    
-    transition:all 0.5s;
-    &:hover{
-        color:#ffca08;
-        box-shadow: 0px 5px 6px 3px rgba(255,202,8,0.16);
     }
 
 `
